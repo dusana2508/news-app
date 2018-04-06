@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Python News app</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    
+    <h2> Konfiguracija sajta </h2>
+    {% for key in config %}
+    <pre>
+      <code>
+      <strong> {{ key }} </strong><i> {{ config[key] }} </i> <br/>
+      </code>
+   </pre>
+   {% endfor %}
+
+   {% for category in categories %}
+   
+    <h3> Kategorija: <a href="category/{{ category['categoryName'] }}"> {{ category['categoryName'] }} </a> </h3>
+   {% for news in category['news']  %}
+    <pre>
+      <code>
+        <a href= {{ news['_id'] }}>{{ news['title'] }}</a>
+
+      </code>
+    </pre>
+       
+   {% endfor %}
+   {% endfor %}
+  </body>
+</html>
