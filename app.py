@@ -18,6 +18,7 @@ def getNewsById(newsid):
     for singleNews in category['news']:
       if newsid == singleNews['_id']:
         return render_template('index-news.html', news = singleNews)
+  return 'ok'
 
 @app.route ('/category/<categoryURL>')
 def getOneCategoryNews(categoryURL):
@@ -25,5 +26,19 @@ def getOneCategoryNews(categoryURL):
     if category['categoryName'] == categoryURL:
       return render_template('category.html', allNews=category['news'])
 
+  return 'ok'
+@app.route ('/category')
+def getOnlyCategories():
+  return render_template('allcategories.html', categories = newsCategories)
+
+@app.route ('/login', methods =['GET','POST'])
+def login():
+  if request.method == 'GET':
+    return render_template('login.html')
+
+  else : 
+    response = requests.post ('http://api-news-me.ml/public/login', data = request.form).json()
+    print (response)
+    return 'ok'
 
 app.run()
